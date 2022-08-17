@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.drbanner.app.entity.Pedidos;
 
-public interface IPedidosRespository extends CrudRepository<Pedidos,Long>{
+public interface IPedidosRepository extends CrudRepository<Pedidos,Long>{
 
 }
