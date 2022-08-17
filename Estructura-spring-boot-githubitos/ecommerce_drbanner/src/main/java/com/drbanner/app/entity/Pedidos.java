@@ -23,11 +23,11 @@ public class Pedidos implements Serializable{
 	private String dieccion;
 	@ManyToOne(fetch=FetchType.LAZY)//Foreign key
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Paquetes paquetesIdPaquete;
+	private Paquetes paqueteIdPaquete;
 	
 	@ManyToOne(fetch=FetchType.LAZY)//Foreign key
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Compras comprasIdCompras;
+	private Compras compraIdCompra;
 	
 
 }
