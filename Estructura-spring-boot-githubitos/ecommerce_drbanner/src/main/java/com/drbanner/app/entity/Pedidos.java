@@ -20,14 +20,15 @@ public class Pedidos implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idPedido;
 	private Date fecha;
-	private String dieccion;
+	@Column(length = 1000)
+	private String direccion;
 	@ManyToOne(fetch=FetchType.LAZY)//Foreign key
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Paquetes paqueteIdPaquete;
+	private Paquetes paquetes;
 	
 	@ManyToOne(fetch=FetchType.LAZY)//Foreign key
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Compras compraIdCompra;
+	private Compras compras;
 	
 
 }

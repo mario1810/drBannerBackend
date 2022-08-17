@@ -14,14 +14,19 @@ import lombok.Data;
 public class Imagenes implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
 	@Id	//primary key
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idImagen;
+	
 	@ManyToOne(fetch=FetchType.LAZY) //Foreign key
 	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-	private Categorias categoriaIdCategoria;
+	private Categorias categorias;
+	
+	@Column(length = 2000)
 	private String url;//Otros campos
 	private String descripcion;
+	
 	
 	
 }

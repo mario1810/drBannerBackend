@@ -10,6 +10,7 @@ import lombok.Data;
 @Table(name="categorias")
 public class Categorias implements Serializable{
 	private static final long serialVersionUID = 1L;
+	
 	@Id//primary key
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idCategoria;

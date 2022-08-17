@@ -16,10 +16,14 @@ public class Paquetes implements Serializable{
 	@Id//primary key
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idPaquete;
+	
 	@ManyToOne(fetch=FetchType.LAZY)//Foreign key
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Categorias categoriaIdCategoria;  
+	private Categorias categorias;
+	
 	private String nombrePaquete;//Otros campos
 	private double costo;
+	@Column(length = 3000)
+	private String descripcion;
 	
 }

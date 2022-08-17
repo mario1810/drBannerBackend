@@ -1,16 +1,17 @@
 package com.drbanner.app.entity;
 import java.io.Serializable;
-import java.sql.Date;
 
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name="usuarios")
 public class Usuarios implements Serializable {
+	
 private static final long serialVersionUID = 1L;
 	
 	//Llave primaria
@@ -24,6 +25,7 @@ private static final long serialVersionUID = 1L;
 	private String correo;
 	private String password;
 	private String telefono;
+	@Column(length = 1000)
 	private String avatar;
 	private String numeroTarjeta;
 	private String tipoTarjeta;
@@ -32,6 +34,6 @@ private static final long serialVersionUID = 1L;
 	//llave foranea
 	@ManyToOne(fetch=FetchType.LAZY)//Foreign key
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Roles rolIdRol ;
+	private Roles roles;
 
 }

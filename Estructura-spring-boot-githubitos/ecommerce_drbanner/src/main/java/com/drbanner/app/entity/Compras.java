@@ -23,10 +23,10 @@ private static final long serialVersionUID = 1L;
 	private Long idCompra;
 	@ManyToOne(fetch=FetchType.LAZY) //Foreign key
 	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-	private Usuarios idUsuario;
+	private Usuarios usuarios;
 	private Date fechaCompra;
 	private Time horaCompra;
-	private Boolean comprado;
+	private boolean carrito;
 	private double costoTotal;
 	
 }

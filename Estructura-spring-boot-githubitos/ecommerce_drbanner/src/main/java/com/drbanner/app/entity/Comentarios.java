@@ -3,6 +3,7 @@ package com.drbanner.app.entity;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -34,10 +35,11 @@ public class Comentarios implements Serializable{
 	private int estrellas;
 	
 	
-	//llave foranea
+	//llave foranea@NotNull  
+	
 	@ManyToOne(fetch=FetchType.LAZY)//Foreign key
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Usuarios usuarioIdUsuario;
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+	private Usuarios usuarios;
 	
 	
 
