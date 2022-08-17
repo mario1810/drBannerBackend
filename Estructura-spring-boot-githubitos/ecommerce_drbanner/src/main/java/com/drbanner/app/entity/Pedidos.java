@@ -1,4 +1,5 @@
 package com.drbanner.app.entity;
+
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -23,6 +24,10 @@ public class Pedidos implements Serializable{
 	@ManyToOne(fetch=FetchType.LAZY)//Foreign key
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Paquetes paquetesIdPaquete;
+	
+	@ManyToOne(fetch=FetchType.LAZY)//Foreign key
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Compras comprasIdCompras;
 	
 
 }

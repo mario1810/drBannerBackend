@@ -225,3 +225,4 @@ dist
 
 .DS_STORE
 .vscode/
+/.metadata/
