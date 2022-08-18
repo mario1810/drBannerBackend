@@ -13,27 +13,29 @@ public class UsuariosServiceImp implements IUsuariosService{
 	IUsuariosRepository usuariosRepository;
 	
 	@Override
-	public List<Usuarios> findAllUsuarios() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Usuarios> findAllUsuarios() {		
+		return (List<Usuarios>) usuariosRepository.findAll();
 	}
-
+	
 	@Override
-	public Usuarios saveUsuario(Usuarios usuario) {
-		// TODO Auto-generated method stub
-		return null;
+	public Usuarios saveUsuario(Usuarios usuario) {		
+		return usuariosRepository.save(usuario);
 	}
 
+	
 	@Override
 	public Usuarios deleteUsuarioById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Usuarios usuario= findUsuarioById(id);
+		usuariosRepository.deleteById(id);
+		return usuario;
 	}
-
+	
+	
+	
 	@Override
 	public Usuarios findUsuarioById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return usuariosRepository.findById(id).orElse(null);
 	}
+	
 
 }

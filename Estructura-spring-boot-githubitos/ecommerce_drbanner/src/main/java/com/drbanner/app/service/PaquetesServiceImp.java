@@ -14,21 +14,19 @@ public class PaquetesServiceImp implements IPaquetesService {
 	
 	@Override
 	public List<Paquetes> findAllPaquetes() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Paquetes>) paquetesRepository.findAll();
 	}
 
 	@Override
-	public Paquetes savePaquete(Paquetes paquete) {
-		// TODO Auto-generated method stub
-		return null;
+	public Paquetes savePaquete(Paquetes paquetes) {
+		return paquetesRepository.save(paquetes);
 	}
 
 	@Override
 	public Paquetes deletePaqueteById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		Paquetes paquete= findPaqueteById(id);
+		paquetesRepository.deleteById(id);
+		return paquete;	}
 
 	@Override
 	public Paquetes findPaqueteById(Long id) {
