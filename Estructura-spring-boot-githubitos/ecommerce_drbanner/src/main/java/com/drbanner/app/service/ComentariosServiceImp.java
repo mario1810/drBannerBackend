@@ -3,10 +3,11 @@ package com.drbanner.app.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.drbanner.app.entity.Comentarios;
 import com.drbanner.app.repository.IComentariosRepository;
-
+@Service
 public class ComentariosServiceImp implements IComentariosService{
 
 	@Autowired

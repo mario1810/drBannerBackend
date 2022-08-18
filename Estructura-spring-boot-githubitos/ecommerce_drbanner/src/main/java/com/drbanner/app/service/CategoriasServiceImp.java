@@ -3,10 +3,12 @@ package com.drbanner.app.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.drbanner.app.entity.Categorias;
 import com.drbanner.app.repository.ICategoriasRepository;
 
+@Service
 public class CategoriasServiceImp implements ICategoriasService {
 
 	@Autowired
