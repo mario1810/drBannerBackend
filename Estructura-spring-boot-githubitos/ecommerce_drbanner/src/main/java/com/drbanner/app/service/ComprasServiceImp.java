@@ -14,26 +14,24 @@ public class ComprasServiceImp implements IComprasService{
 	
 	@Override
 	public List<Compras> findAllCompras() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Compras>) comprasRepository.findAll();
 	}
 
 	@Override
 	public Compras saveCompra(Compras compra) {
-		// TODO Auto-generated method stub
-		return null;
+		return comprasRepository.save(compra);
 	}
 
 	@Override
 	public Compras deleteCompraById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Compras compra= findCompraById(id);
+		comprasRepository.deleteById(id);
+		return compra;
 	}
 
 	@Override
 	public Compras findCompraById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return comprasRepository.findById(id).orElse(null);
 	}
 
 }
