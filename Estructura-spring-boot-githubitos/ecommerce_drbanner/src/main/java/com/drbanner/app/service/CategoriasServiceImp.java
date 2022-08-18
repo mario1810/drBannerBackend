@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.drbanner.app.entity.Categorias;
+import com.drbanner.app.entity.Usuarios;
 import com.drbanner.app.repository.ICategoriasRepository;
+import com.drbanner.app.repository.IUsuariosRepository;
 
 public class CategoriasServiceImp implements ICategoriasService {
 
@@ -13,27 +15,29 @@ public class CategoriasServiceImp implements ICategoriasService {
 	ICategoriasRepository categoriasRepository;
 	
 	@Override
-	public List<Categorias> findAllCategorias() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Categorias> findAllCategorias() {		
+		return (List<Categorias>) categoriasRepository.findAll();
 	}
-
+	
 	@Override
-	public Categorias saveCategoria(Categorias categoria) {
-		// TODO Auto-generated method stub
-		return null;
+	public Categorias saveCategoria(Categorias categoria) {		
+		return categoriasRepository.save(categoria);
 	}
 
+	
 	@Override
 	public Categorias deleteCategoriaById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Categorias categoria= findCategoriaById(id);
+		categoriasRepository.deleteById(id);
+		return categoria;
 	}
-
+	
+	
+	
 	@Override
 	public Categorias findCategoriaById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return categoriasRepository.findById(id).orElse(null);
 	}
+	
 
 }

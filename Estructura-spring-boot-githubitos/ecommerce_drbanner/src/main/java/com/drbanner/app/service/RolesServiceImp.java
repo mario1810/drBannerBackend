@@ -14,26 +14,24 @@ public class RolesServiceImp implements IRolesService {
 	
 	@Override
 	public List<Roles> findAllRoles() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Roles>) rolesRepository.findAll();
 	}
 
 	@Override
 	public Roles saveRol(Roles rol) {
-		// TODO Auto-generated method stub
-		return null;
+		return rolesRepository.save(rol);
 	}
 
 	@Override
 	public Roles deleteRolById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Roles rol= findRolById(id);
+		rolesRepository.deleteById(id);
+		return rol;
 	}
 
 	@Override
 	public Roles findRolById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return rolesRepository.findById(id).orElse(null);
 	}
-
+	
 }
