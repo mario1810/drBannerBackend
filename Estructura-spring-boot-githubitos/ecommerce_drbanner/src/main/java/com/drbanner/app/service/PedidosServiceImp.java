@@ -14,26 +14,25 @@ public class PedidosServiceImp implements IPedidosService {
 	
 	@Override
 	public List<Pedidos> findAllPedidos() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return (List<Pedidos>) pedidosRepository.findAll();
 	}
 
 	@Override
 	public Pedidos savePedido(Pedidos pedido) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return pedidosRepository.save(pedido);
 	}
 
 	@Override
 	public Pedidos deletePedidoById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Pedidos product= findPedidoById(id);
+		pedidosRepository.deleteById(id);
+		return product;
 	}
 
 	@Override
 	public Pedidos findPedidoById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return pedidosRepository.findById(id).orElse(null);
 	}
-
 }
