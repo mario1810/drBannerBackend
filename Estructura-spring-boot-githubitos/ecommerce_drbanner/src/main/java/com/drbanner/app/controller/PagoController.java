@@ -21,13 +21,7 @@ public class PagoController {
 	@Autowired
 	IUsuariosService usuariosService;
 	
-	
-	/*
-	@GetMapping("/pago")
-	public Usuarios datosUsuarioById() {		
-		return "hola:chido";
-	}*/
-	
+		
 	@GetMapping("/pago/{id}")
 	public PagoAutorrellenoDTO datosUsuarioById(@PathVariable Long id) {
 		Usuarios usuario=usuariosService.findUsuarioById(id);
