@@ -30,8 +30,7 @@ public class PaquetesServiceImp implements IPaquetesService {
 
 	@Override
 	public Paquetes findPaqueteById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return paquetesRepository.findById(id).orElse(null);
 	}
 
 }

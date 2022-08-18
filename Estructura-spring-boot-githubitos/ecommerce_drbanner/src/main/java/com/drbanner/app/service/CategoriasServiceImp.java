@@ -5,9 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.drbanner.app.entity.Categorias;
-import com.drbanner.app.entity.Usuarios;
 import com.drbanner.app.repository.ICategoriasRepository;
-import com.drbanner.app.repository.IUsuariosRepository;
 
 public class CategoriasServiceImp implements ICategoriasService {
 

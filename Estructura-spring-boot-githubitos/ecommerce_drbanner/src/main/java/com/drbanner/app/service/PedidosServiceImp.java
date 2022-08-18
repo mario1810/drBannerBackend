@@ -26,9 +26,9 @@ public class PedidosServiceImp implements IPedidosService {
 
 	@Override
 	public Pedidos deletePedidoById(Long id) {
-		Pedidos product= findPedidoById(id);
+		Pedidos pedido= findPedidoById(id);
 		pedidosRepository.deleteById(id);
-		return product;
+		return pedido;
 	}
 
 	@Override

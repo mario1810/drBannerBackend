@@ -11,28 +11,28 @@ import com.drbanner.app.repository.IImagenesRepository;
 public class ImagenesServiceImp implements IImagenesService{
 
 	@Autowired
-	IImagenesRepository ImagenesRepository;
+	IImagenesRepository imagenesRepository;
 	
 	@Override
 	public List<Imagenes> findAllImagenes() {
-		return (List<Imagenes>) ImagenesRepository.findAll();
+		return (List<Imagenes>) imagenesRepository.findAll();
 	}
 
 	@Override
 	public Imagenes saveImagen(Imagenes imagen) {
-		return ImagenesRepository.save(imagen);
+		return imagenesRepository.save(imagen);
 	}
 
 	@Override
 	public Imagenes deleteImagen(Long id) {
 		Imagenes imagen= findImagenById(id);
-		ImagenesRepository.deleteById(id);
+		imagenesRepository.deleteById(id);
 		return imagen;
 	}
 
 	@Override
 	public Imagenes findImagenById(Long id) {
-		return ImagenesRepository.findById(id).orElse(null);
+		return imagenesRepository.findById(id).orElse(null);
 	}
 	
 }
