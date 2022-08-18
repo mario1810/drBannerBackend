@@ -15,26 +15,24 @@ public class ImagenesServiceImp implements IImagenesService{
 	
 	@Override
 	public List<Imagenes> findAllImagenes() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Imagenes>) ImagenesRepository.findAll();
 	}
 
 	@Override
 	public Imagenes saveImagen(Imagenes imagen) {
-		// TODO Auto-generated method stub
-		return null;
+		return ImagenesRepository.save(imagen);
 	}
 
 	@Override
 	public Imagenes deleteImagen(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Imagenes imagen= findImagenById(id);
+		ImagenesRepository.deleteById(id);
+		return imagen;
 	}
 
 	@Override
 	public Imagenes findImagenById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return ImagenesRepository.findById(id).orElse(null);
 	}
-
+	
 }

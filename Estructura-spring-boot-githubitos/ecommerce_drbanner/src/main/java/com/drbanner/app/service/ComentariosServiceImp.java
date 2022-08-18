@@ -12,28 +12,30 @@ public class ComentariosServiceImp implements IComentariosService{
 	@Autowired
 	IComentariosRepository comentariosRepository;
 	
+	
 	@Override
 	public List<Comentarios> findAllComentarios() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Comentarios>) comentariosRepository.findAll();
 	}
 
 	@Override
 	public Comentarios saveComentario(Comentarios comentario) {
-		// TODO Auto-generated method stub
-		return null;
+		return comentariosRepository.save(comentario);
 	}
 
 	@Override
 	public Comentarios deleteComentarioById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Comentarios comentario= findComentarioById(id);
+		comentariosRepository.deleteById(id);
+		return comentario;
 	}
 
 	@Override
 	public Comentarios findComentarioById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return comentariosRepository.findById(id).orElse(null);
+	}
 	}
 
-}
+	
+
+	
