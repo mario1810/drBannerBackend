@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,7 +36,7 @@ public class PagoController {
 	
 	
 	//Cambiar el tipo de objeto que retorna ¿Se usan las clases envolventes?
-	@PostMapping("/pago")
+	@PutMapping("/pago")
 	public PagoCompraDTO  newCustomer(@RequestBody PagoCompraDTO  pagoDatos) {
 		Usuarios usuario=usuariosService.findUsuarioById(pagoDatos.getIdUsuario());
 		if(pagoDatos.getGuardarTarjeta()) {
