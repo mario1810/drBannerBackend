@@ -1,5 +1,7 @@
 package com.drbanner.app.controller;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,17 +14,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.drbanner.app.dto.PagoAutorrellenoDTO;
 import com.drbanner.app.dto.PagoCompraDTO;
+import com.drbanner.app.entity.Compras;
 import com.drbanner.app.entity.Usuarios;
+import com.drbanner.app.service.IComprasService;
 import com.drbanner.app.service.IUsuariosService;
 
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path="/api") //localhost:port/api
 public class PagoController {
+	
 	@Autowired
 	IUsuariosService usuariosService;
+	@Autowired
+	IComprasService comprasService;
 	
-		
+	/*Se ejecuta este request cuando se abre la página de pago*/
+	/*/api/pago/{idUser}*/
 	@GetMapping("/pago/{id}")
 	public PagoAutorrellenoDTO datosUsuarioById(@PathVariable Long id) {
 		Usuarios usuario=usuariosService.findUsuarioById(id);
@@ -35,17 +43,28 @@ public class PagoController {
 	}
 	
 	
-	//Cambiar el tipo de objeto que retorna ¿Se usan las clases envolventes?
+	/*Se ejecuta este request cuando se da click en pagar*/
+	/*/api/pago*/
 	@PutMapping("/pago")
-	public PagoCompraDTO  newCustomer(@RequestBody PagoCompraDTO  pagoDatos) {
-		Usuarios usuario=usuariosService.findUsuarioById(pagoDatos.getIdUsuario());
+	public Compras  newCustomer(@RequestBody PagoCompraDTO  pagoDatos) {
+		//¿Guaradamos datos el usuario?
 		if(pagoDatos.getGuardarTarjeta()) {
+			Usuarios usuario=usuariosService.findUsuarioById(pagoDatos.getIdUsuario());
 			usuario.setNumeroTarjeta(pagoDatos.getNumeroTarjeta());
 			usuario.setTipoTarjeta(pagoDatos.getTipoTarjeta());
+			//Actualizamos el usuario			
+			usuariosService.saveUsuario(usuario);
 		}
-		//Actualizar el costo de la compra y el estado de la compra
-		
-		return pagoDatos;
+		//Actualizamos tabla de compra
+		Compras compra = comprasService.findCompraById(pagoDatos.getIdCompra());
+		//fecha
+		//Date myDate = Date.now();
+		//compra.setFechaCompra(myDate);
+		//Actualizamos que el carrito ha sido comprado
+		compra.setCarrito(1);
+		//Actualizamos la compra
+		comprasService.saveCompra(compra);
+		return compra;
 	}
 	
 	/*

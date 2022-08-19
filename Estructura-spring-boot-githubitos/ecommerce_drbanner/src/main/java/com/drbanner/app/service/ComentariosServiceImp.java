@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.drbanner.app.dto.comentarioFIltradoDTO;
 import com.drbanner.app.entity.Comentarios;
+import com.drbanner.app.repository.IComentarioProyeccion;
 import com.drbanner.app.repository.IComentariosRepository;
 @Service
 public class ComentariosServiceImp implements IComentariosService{
@@ -35,7 +37,12 @@ public class ComentariosServiceImp implements IComentariosService{
 	public Comentarios findComentarioById(Long id) {
 		return comentariosRepository.findById(id).orElse(null);
 	}
+
+	@Override
+	public List<IComentarioProyeccion> findComentariosByIdUsario(Long IdUsuario) {
+		return comentariosRepository.findByUsuariosId(IdUsuario);
 	}
+}
 
 	
 

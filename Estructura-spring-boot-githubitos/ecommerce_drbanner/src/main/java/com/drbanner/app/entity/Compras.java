@@ -26,7 +26,7 @@ private static final long serialVersionUID = 1L;
 	private Usuarios usuarios;
 	private Date fechaCompra;
 	private Time horaCompra;
-	private boolean carrito;
+	private int carrito;
 	private double costoTotal;
 	
 }

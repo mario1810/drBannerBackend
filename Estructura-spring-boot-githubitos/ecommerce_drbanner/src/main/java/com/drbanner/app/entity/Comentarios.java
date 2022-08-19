@@ -23,7 +23,7 @@ public class Comentarios implements Serializable{
 	private Long idComentarios;
 	
 	//resto de colum
-	private String comentario;
+	
 	private Date fechaComentario;
 	private int estrellas;
 	
@@ -34,6 +34,8 @@ public class Comentarios implements Serializable{
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 	private Usuarios usuarios;
 	
+	private String comentario;
 	
+
 
 }
