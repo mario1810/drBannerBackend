@@ -1,6 +1,8 @@
 package com.drbanner.app.controller;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.drbanner.app.dto.PagoAutorrellenoDTO;
 import com.drbanner.app.dto.PagoCompraDTO;
+import com.drbanner.app.dto.ResultadoRequestDTO;
 import com.drbanner.app.entity.Compras;
 import com.drbanner.app.entity.Usuarios;
 import com.drbanner.app.service.IComprasService;
@@ -46,7 +49,7 @@ public class PagoController {
 	/*Se ejecuta este request cuando se da click en pagar*/
 	/*/api/pago*/
 	@PutMapping("/pago")
-	public Compras  newCustomer(@RequestBody PagoCompraDTO  pagoDatos) {
+	public ResultadoRequestDTO  newCustomer(@RequestBody PagoCompraDTO  pagoDatos) {
 		//¿Guaradamos datos el usuario?
 		if(pagoDatos.getGuardarTarjeta()) {
 			Usuarios usuario=usuariosService.findUsuarioById(pagoDatos.getIdUsuario());
@@ -57,36 +60,21 @@ public class PagoController {
 		}
 		//Actualizamos tabla de compra
 		Compras compra = comprasService.findCompraById(pagoDatos.getIdCompra());
-		//fecha
-		//Date myDate = Date.now();
-		//compra.setFechaCompra(myDate);
+		//fecha y hora
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		compra.setFechaCompra(formatter.format(date));
+		formatter = new SimpleDateFormat("HH:mm:ss");
+		compra.setHoraCompra(formatter.format(date));
 		//Actualizamos que el carrito ha sido comprado
 		compra.setCarrito(1);
 		//Actualizamos la compra
 		comprasService.saveCompra(compra);
-		return compra;
+		ResultadoRequestDTO resultado = new ResultadoRequestDTO();
+		resultado.setResultado(true);
+		resultado.setErrorDescripcion("No hubo ningun error");
+		return resultado;
 	}
-	
-	/*
-	@PostMapping("/pago")
-	public Customer newCustomer(@RequestBody Customer customer) {
-		customer.setIdCustomer(null);
-		return customerService.saveCustomer(customer);
-	}
-	
-	*	@PutMapping("/customers")
-	public Customer replaceCustomer(@RequestBody Customer customer) {
-		//Filtros para asegurar que esté un ID y exista
-		return customerService.saveCustomer(customer);
-	}
-	
-	@DeleteMapping("customers/{id}")
-	public Customer byeCustomer(@PathVariable Long id) {
-		return customerService.deleteCustomerById(id);
-	}
-	*
-	*
-	*/
 	
 	
 }

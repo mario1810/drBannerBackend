@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.drbanner.app.dto.ComentariosDTO;
 import com.drbanner.app.dto.PagoAutorrellenoDTO;
-import com.drbanner.app.dto.comentarioFIltradoDTO;
 import com.drbanner.app.entity.Comentarios;
 import com.drbanner.app.entity.Usuarios;
 import com.drbanner.app.repository.IComentarioProyeccion;

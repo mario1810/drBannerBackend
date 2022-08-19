@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.drbanner.app.dto.comentarioFIltradoDTO;
 import com.drbanner.app.entity.Comentarios;
 import com.drbanner.app.repository.IComentarioProyeccion;
 import com.drbanner.app.repository.IComentariosRepository;

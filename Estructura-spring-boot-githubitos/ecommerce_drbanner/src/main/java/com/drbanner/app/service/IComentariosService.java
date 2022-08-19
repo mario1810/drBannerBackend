@@ -2,7 +2,7 @@ package com.drbanner.app.service;
 
 import java.util.List;
 
-import com.drbanner.app.dto.comentarioFIltradoDTO;
+
 import com.drbanner.app.entity.Comentarios;
 import com.drbanner.app.repository.IComentarioProyeccion;
 
