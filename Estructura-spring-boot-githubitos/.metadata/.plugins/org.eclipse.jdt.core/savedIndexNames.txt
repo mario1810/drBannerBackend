@@ -43,7 +43,6 @@ INDEX VERSION 1.131+C:\Users\mario\Documents\GenerationMX\ProyectoGithubitosBack
 784213191.index
 506940979.index
 2928571329.index
-214841532.index
 3760986964.index
 2952055869.index
 1252573286.index

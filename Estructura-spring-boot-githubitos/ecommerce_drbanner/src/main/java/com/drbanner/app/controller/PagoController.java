@@ -49,7 +49,7 @@ public class PagoController {
 	/*Se ejecuta este request cuando se da click en pagar*/
 	/*/api/pago*/
 	@PutMapping("/pago")
-	public ResultadoRequestDTO  newCustomer(@RequestBody PagoCompraDTO  pagoDatos) {
+	public ResultadoRequestDTO  finCompra(@RequestBody PagoCompraDTO  pagoDatos) {
 		//¿Guaradamos datos el usuario?
 		if(pagoDatos.getGuardarTarjeta()) {
 			Usuarios usuario=usuariosService.findUsuarioById(pagoDatos.getIdUsuario());

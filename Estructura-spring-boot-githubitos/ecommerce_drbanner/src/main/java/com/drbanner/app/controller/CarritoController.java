@@ -22,7 +22,6 @@ import com.drbanner.app.service.IPaquetesService;
 @RestController
 @RequestMapping(path="/api") //localhost:port/api
 public class CarritoController {
-	
 	@Autowired
 	IComprasService comprasService;
 	@Autowired
@@ -39,7 +38,7 @@ public class CarritoController {
 	}
 	
 	
-	@DeleteMapping("/carrito/{idPaquete}")
+	@DeleteMapping("/carrito/paquete/{idPaquete}")
 		ResultadoRequestDTO borarPaqueteCarrito(@PathVariable Long idPaquete) {
 		ResultadoRequestDTO resultado = new ResultadoRequestDTO();
 		if(paquetesService.findPaqueteById(idPaquete)!=null) {
@@ -53,5 +52,20 @@ public class CarritoController {
 		resultado.setErrorDescripcion("No existe el paquete");
 		return resultado;
 	}
+	
+	/*Se recibe una petición cuano el carrito está vacio*/
+	@DeleteMapping("/carrito/compra/{idCompra}")
+	ResultadoRequestDTO boraCompra(@PathVariable Long idCompra) {
+	ResultadoRequestDTO resultado = new ResultadoRequestDTO();
+	if(comprasService.findCompraById(idCompra)!=null) {
+		comprasService.deleteCompraById(idCompra);
+		resultado.setResultado(true);
+		resultado.setErrorDescripcion("No hubo ningun error");
+		return resultado;	
+	}
+	resultado.setResultado(false);
+	resultado.setErrorDescripcion("No existe la compra");
+	return resultado;
+}
 	
 }
