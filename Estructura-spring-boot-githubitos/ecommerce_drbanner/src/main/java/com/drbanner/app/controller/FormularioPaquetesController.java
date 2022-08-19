@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.drbanner.app.dto.AddPedidoDTO;
 import com.drbanner.app.dto.ResultadoRequestDTO;
-import com.drbanner.app.dto.SolicitudCrearCompraDTO;
+
 import com.drbanner.app.entity.Compras;
 import com.drbanner.app.entity.Pedidos;
 import com.drbanner.app.service.IComprasService;
+import com.drbanner.app.service.IPedidosService;
+import com.drbanner.app.service.PedidosServiceImp;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -21,13 +23,17 @@ public class FormularioPaquetesController {
 
 	@Autowired
 	IComprasService comprasService;
+	@Autowired
+	IPedidosService pedidosService;
 	
 	/*Post para crear la compra, se envia una compra vacia, pero con el ID de usuario*/
 	@PostMapping("/formularioPaquetes/crearCompra")
 	ResultadoRequestDTO  crearCompra(@RequestBody Compras compra) {
 		//7creamos un objeto compra
-		compra.setIdCompra(null);
-		comprasService.saveCompra(compra);		
+		if(comprasService.findCompraById(compra.getIdCompra())==null) {
+			compra.setIdCompra(null);
+			comprasService.saveCompra(compra);		
+		}
 		ResultadoRequestDTO resultado = new ResultadoRequestDTO();
 		resultado.setResultado(true);
 		resultado.setErrorDescripcion("No hubo ningun error");
@@ -36,16 +42,16 @@ public class FormularioPaquetesController {
 	
 	/*Post para añadir un pedido*/
 	@PostMapping("/formularioPaquetes/addPedidio")
-	ResultadoRequestDTO  crearCompra(@RequestBody AddPedidoDTO pedidoAux) {
-		
-		Pedidos pedido= new Pedidos();
-		pedido.getFecha();
-		pedido.getDireccion();
+	ResultadoRequestDTO  crearCompra(@RequestBody Pedidos pedidoAux) {
+		/*Pedidos pedido= new Pedidos();
+		pedido.getFecha(pedidoAux.getFecha());
+		pedido.getDireccion(pedidoAux.getDirección());
 		pedido.getIdPedido(null);
-		pedido.getCompras(comprasService.findCompraById(pedidoAux.get));
+		pedido.getCompras(comprasService.findCompraById(pedidoAux.getIdCompra()));*/
 		//creamos un objeto compra
-		compra.setIdCompra(null);
-		comprasService.saveCompra(compra);		
+		/*compra.setIdCompra(null);
+		comprasService.saveCompra(compra);*/
+		pedidosService.savePedido(pedidoAux);
 		ResultadoRequestDTO resultado = new ResultadoRequestDTO();
 		resultado.setResultado(true);
 		resultado.setErrorDescripcion("No hubo ningun error");

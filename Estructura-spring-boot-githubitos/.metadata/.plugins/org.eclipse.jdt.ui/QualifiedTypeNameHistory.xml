@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.drbanner.app.service.IComprasService"/>
-    <fullyQualifiedTypeName name="com.drbanner.app.entity.Compras"/>
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="com.drbanner.app.dto.ComentariosDTO"/>
-    <fullyQualifiedTypeName name="lombok.Data"/>
     <fullyQualifiedTypeName name="com.drbanner.app.service.IComentariosService"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
     <fullyQualifiedTypeName name="com.drbanner.app.dto.comentarioFIltradoDTO"/>
     <fullyQualifiedTypeName name="com.drbanner.app.entity.Comentarios"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="com.drbanner.app.repository.IComentarioProyeccion"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="com.drbanner.app.dto.resultadoRequestDTO"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.drbanner.app.repository.ICarritoProyeccion"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
+    <fullyQualifiedTypeName name="com.drbanner.app.dto.ResultadoRequestDTO"/>
+    <fullyQualifiedTypeName name="com.drbanner.app.service.IPaquetesService"/>
+    <fullyQualifiedTypeName name="com.drbanner.app.entity.Paquetes"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
+    <fullyQualifiedTypeName name="com.drbanner.app.dto.SolicitudCrearCompraDTO"/>
+    <fullyQualifiedTypeName name="com.drbanner.app.service.IComprasService"/>
+    <fullyQualifiedTypeName name="com.drbanner.app.entity.Pedidos"/>
+    <fullyQualifiedTypeName name="com.drbanner.app.dto.AddPedidoDTO"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="com.drbanner.app.service.PedidosServiceImp"/>
+    <fullyQualifiedTypeName name="com.drbanner.app.service.IPedidosService"/>
+    <fullyQualifiedTypeName name="com.drbanner.app.entity.Compras"/>
+    <fullyQualifiedTypeName name="org.springframework.data.repository.query.Param"/>
 </qualifiedTypeNameHistroy>

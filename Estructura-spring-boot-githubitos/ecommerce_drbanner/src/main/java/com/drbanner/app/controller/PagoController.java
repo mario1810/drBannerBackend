@@ -62,10 +62,11 @@ public class PagoController {
 		Compras compra = comprasService.findCompraById(pagoDatos.getIdCompra());
 		//fecha y hora
 		Date date = new Date();
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		compra.setFechaCompra(formatter.format(date));
 		formatter = new SimpleDateFormat("HH:mm:ss");
 		compra.setHoraCompra(formatter.format(date));
+		compra.setCostoTotal(pagoDatos.getTotal());
 		//Actualizamos que el carrito ha sido comprado
 		compra.setCarrito(1);
 		//Actualizamos la compra

@@ -11,8 +11,6 @@ public interface IComentariosRepository extends CrudRepository<Comentarios,Long>
 
 	@Query(value = "SELECT *  FROM comentarios WHERE usuarios_id_usuario=?1", nativeQuery = true)
 	List<IComentarioProyeccion> findByUsuariosId(Long usuarioId);
-	
-	
-	
+
 	
 }

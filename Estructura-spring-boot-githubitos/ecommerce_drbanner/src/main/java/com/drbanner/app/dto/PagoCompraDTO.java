@@ -17,4 +17,5 @@ public class PagoCompraDTO implements Serializable{
 	private String cvv;
 	private Boolean guardarTarjeta;
 	private Long idCompra;
+	private String total;
 }
