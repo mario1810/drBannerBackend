@@ -5,7 +5,7 @@ import java.sql.Date;
 public interface IComentarioProyeccion {
 
 	Long getIdComentarios();
-	Date getFechaComentario();
+	String getFechaComentario();
 	int getEstrellas();
 	String getComentario();
 }

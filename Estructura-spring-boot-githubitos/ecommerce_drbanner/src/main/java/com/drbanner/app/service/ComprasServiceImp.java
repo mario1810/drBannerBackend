@@ -36,8 +36,9 @@ public class ComprasServiceImp implements IComprasService{
 		return comprasRepository.findById(id).orElse(null);
 	}
 	
-	public List<ICarritoProyeccion> carritoPaquetesByUserId(Long usuarioId){
-		return comprasRepository.findPaquetesByUserId(usuarioId);
+	@Override
+	public List<ICarritoProyeccion> carritoPaquetesByCompraId(Long compraId){
+		return comprasRepository.findPaquetesByCompraId(compraId);
 	}
 
 }
