@@ -24,7 +24,7 @@ public class Comentarios implements Serializable{
 	
 	//resto de colum
 	
-	private Date fechaComentario;
+	private String fechaComentario;
 	private int estrellas;
 	
 	

@@ -22,7 +22,7 @@ public class Paquetes implements Serializable{
 	private Categorias categorias;
 	
 	private String nombrePaquete;//Otros campos
-	private double costo;
+	private String costo;
 	@Column(length = 3000)
 	private String descripcion;
 	

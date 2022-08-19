@@ -19,7 +19,7 @@ public class Pedidos implements Serializable{
 	@Id//primary key
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idPedido;
-	private Date fecha;
+	private String fecha;
 	@Column(length = 1000)
 	private String direccion;
 	@ManyToOne(fetch=FetchType.LAZY)//Foreign key
