@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.drbanner.app.entity.Compras;
+import com.drbanner.app.entity.Usuarios;
 import com.drbanner.app.repository.ICarritoProyeccion;
 import com.drbanner.app.repository.IComprasRepository;
 @Service
@@ -39,6 +40,11 @@ public class ComprasServiceImp implements IComprasService{
 	@Override
 	public List<ICarritoProyeccion> carritoPaquetesByCompraId(Long compraId){
 		return comprasRepository.findPaquetesByCompraId(compraId);
+	}
+
+	@Override
+	public Compras findCompraUsuario(Usuarios usuario) {
+		return comprasRepository.findByUsuariosAndCarrito(usuario, 0).orElse(null);
 	}
 
 }

@@ -30,4 +30,14 @@ public interface IUsuariosService {
 	 * @return
 	 */
 	public Usuarios findUsuarioById(Long id);
+	
+	
+	/**
+	 * Encontrar un usuario en la base de datos, si no está significa que no está registrado
+	 * @param Id identificador del usuario a buscar
+	 * @return
+	 */
+	public Usuarios findUsuarioLogin(String correo, String password); 
+	
+	public Usuarios findUsuarioByCorreo(String correo);
 }

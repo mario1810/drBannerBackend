@@ -3,6 +3,7 @@ package com.drbanner.app.service;
 import java.util.List;
 
 import com.drbanner.app.entity.Compras;
+import com.drbanner.app.entity.Usuarios;
 import com.drbanner.app.repository.ICarritoProyeccion;
 
 public interface IComprasService {
@@ -33,4 +34,6 @@ public interface IComprasService {
 	public Compras findCompraById(Long id);
 	
 	public List<ICarritoProyeccion> carritoPaquetesByCompraId(Long compraId);
+	
+	public Compras findCompraUsuario(Usuarios usuario); 
 }
