@@ -38,6 +38,11 @@ public class CategoriasServiceImp implements ICategoriasService {
 	public Categorias findCategoriaById(Long id) {
 		return categoriasRepository.findById(id).orElse(null);
 	}
-	
+
+	@Override
+	public Categorias findCatgoriaByNombre(String nombre) {
+		return categoriasRepository.findByNombreCategoria(nombre).orElse(null);
+	}
+
 
 }

@@ -2,6 +2,7 @@ package com.drbanner.app.service;
 
 import java.util.List;
 
+import com.drbanner.app.entity.Categorias;
 import com.drbanner.app.entity.Paquetes;
 
 public interface IPaquetesService {
@@ -30,4 +31,6 @@ public interface IPaquetesService {
 	 * @return
 	 */
 	public Paquetes findPaqueteById(Long id);
+	
+	public Paquetes findPaqueteByNombreAndCategoria(String nombre, Categorias categoria);
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.drbanner.app.entity.Categorias;
 import com.drbanner.app.entity.Paquetes;
 import com.drbanner.app.repository.IPaquetesRepository;
 @Service
@@ -32,6 +33,11 @@ public class PaquetesServiceImp implements IPaquetesService {
 	@Override
 	public Paquetes findPaqueteById(Long id) {
 		return paquetesRepository.findById(id).orElse(null);
+	}
+
+	@Override
+	public Paquetes findPaqueteByNombreAndCategoria(String nombre, Categorias categoria) {
+		return paquetesRepository.findByNombrePaqueteAndCategorias(nombre, categoria).orElse(null);
 	}
 
 }

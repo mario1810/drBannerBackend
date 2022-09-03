@@ -2,6 +2,7 @@ package com.drbanner.app.service;
 
 import java.util.List;
 
+import com.drbanner.app.entity.Compras;
 import com.drbanner.app.entity.Pedidos;
 
 public interface IPedidosService {
@@ -30,4 +31,6 @@ public interface IPedidosService {
 	 * @return
 	 */
 	public Pedidos findPedidoById(Long id);
+	
+	public List<Pedidos> findPedidosByCompra(Compras compra);
 }

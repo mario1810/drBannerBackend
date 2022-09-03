@@ -11,6 +11,7 @@ import com.drbanner.app.dto.IsUsuarioLoginDTO;
 import com.drbanner.app.entity.Compras;
 import com.drbanner.app.entity.Usuarios;
 import com.drbanner.app.service.IComprasService;
+import com.drbanner.app.service.IRolesService;
 import com.drbanner.app.service.IUsuariosService;
 
 @CrossOrigin(origins = "*")
@@ -24,6 +25,9 @@ public class RegistrateController {
 	@Autowired
 	IComprasService comprasService;
 	
+	@Autowired
+	IRolesService rolesService;
+	
 	@PostMapping("/registrate")
 	public IsUsuarioLoginDTO registroUsuario(@RequestBody Usuarios datosUsuario) {
 		
@@ -33,6 +37,8 @@ public class RegistrateController {
 		if(usuario==null) {
 			//No hay usuario registrado con esos datos, creamos uno
 			datosUsuario.setIdUsuario(null);
+			//Asignamos el rol de cliente 
+			datosUsuario.setRoles(rolesService.findRolById(1L));
 			usuario = usuariosService.saveUsuario(datosUsuario);
 			auxUser.setUserId(usuario.getIdUsuario());
 			// Creamos una compra vacia al usuario

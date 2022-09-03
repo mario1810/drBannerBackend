@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.drbanner.app.entity.Compras;
 import com.drbanner.app.entity.Pedidos;
 import com.drbanner.app.repository.IPedidosRepository;
 @Service
@@ -35,5 +36,10 @@ public class PedidosServiceImp implements IPedidosService {
 	@Override
 	public Pedidos findPedidoById(Long id) {
 		return pedidosRepository.findById(id).orElse(null);
+	}
+
+	@Override
+	public List<Pedidos> findPedidosByCompra(Compras compra) {
+		return pedidosRepository.findByCompras(compra);
 	}
 }

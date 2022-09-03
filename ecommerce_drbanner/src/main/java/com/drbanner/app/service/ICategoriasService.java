@@ -30,4 +30,6 @@ public interface ICategoriasService {
 	 * @return
 	 */
 	public Categorias findCategoriaById(Long id);
+	
+	public Categorias findCatgoriaByNombre(String nombre);
 }

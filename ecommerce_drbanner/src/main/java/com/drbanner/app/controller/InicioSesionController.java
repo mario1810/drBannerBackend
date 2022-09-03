@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.drbanner.app.dto.DatosUsuarioLoginDTO;
 import com.drbanner.app.dto.IsUsuarioLoginDTO;
 import com.drbanner.app.entity.Compras;
 import com.drbanner.app.entity.Usuarios;
@@ -58,7 +57,7 @@ public class InicioSesionController {
 				auxUser.setCompraId(compra.getIdCompra());
 			}
 		}else{
-			//No hay usuario regustrado con esos datos
+			//No hay usuario registrado con esos datos
 			auxUser.setUserId(null);
 			auxUser.setCompraId(null);
 		}
