@@ -11,7 +11,7 @@ public class PedidosDTO implements Serializable{
 	 //String nombrePaquete();
 	 //String costo();
 	 private String fecha;
-	 private String dirección;
+	 private String direccion;
 	 //Long paquetes_id_paquete();
 	 //Long idCompra();
 	 Long idPedido;

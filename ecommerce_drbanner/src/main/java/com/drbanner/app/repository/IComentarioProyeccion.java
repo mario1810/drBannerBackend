@@ -1,6 +1,6 @@
 package com.drbanner.app.repository;
 
-import java.sql.Date;
+
 
 public interface IComentarioProyeccion {
 

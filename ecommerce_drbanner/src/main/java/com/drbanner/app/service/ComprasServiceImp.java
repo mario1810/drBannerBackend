@@ -47,4 +47,9 @@ public class ComprasServiceImp implements IComprasService{
 		return comprasRepository.findByUsuariosAndCarrito(usuario, 0).orElse(null);
 	}
 
+	@Override
+	public List<Compras> findHistorialComprasByUsuario(Usuarios usuario) {
+		return comprasRepository.findComprasByUsuariosAndCarritoOrderByFechaCompraAscHoraCompraAsc(usuario, 1);
+	}
+
 }

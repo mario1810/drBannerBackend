@@ -1,8 +1,6 @@
 package com.drbanner.app.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Time;
 
 import javax.persistence.*;
 

@@ -6,15 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.drbanner.app.dto.ComentariosDTO;
-import com.drbanner.app.dto.PagoAutorrellenoDTO;
-import com.drbanner.app.entity.Comentarios;
 import com.drbanner.app.entity.Usuarios;
-import com.drbanner.app.repository.IComentarioProyeccion;
 import com.drbanner.app.service.IComentariosService;
 import com.drbanner.app.service.IUsuariosService;
 
@@ -28,7 +23,7 @@ public class IndexController {
 	IComentariosService comentariosService;
 	
 	
-	@GetMapping("/index")
+	@GetMapping("/comentarios")
 	public List<ComentariosDTO> obtenerComentarios() {
 	     List<Usuarios> listUsers =usuariosService.findAllUsuarios();
 	     List<ComentariosDTO> comentariosDTO = new ArrayList<ComentariosDTO>();
@@ -42,12 +37,12 @@ public class IndexController {
 	     return comentariosDTO;
 	}
 	
-	//Funcion prueba que despliega comentarios
-	@GetMapping("/index2")
-	public List<IComentarioProyeccion> obtenerComentarios2() {		
-		List<IComentarioProyeccion> aux = comentariosService.findComentariosByIdUsario(2L);
-	     return aux;
-	}
+//	//Funcion prueba que despliega comentarios
+//	@GetMapping("/index2")
+//	public List<IComentarioProyeccion> obtenerComentarios2() {		
+//		List<IComentarioProyeccion> aux = comentariosService.findComentariosByIdUsario(2L);
+//	     return aux;
+//	}
 	
 	
 	

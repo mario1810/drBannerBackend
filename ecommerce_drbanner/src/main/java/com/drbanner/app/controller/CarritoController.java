@@ -44,7 +44,7 @@ public class CarritoController {
 		for(int i=0; i<aux.size();i++) {	
 			{	
 				PedidosDTO aux2= new PedidosDTO();
-				aux2.setDirección(aux.get(i).getDireccion());
+				aux2.setDireccion(aux.get(i).getDireccion());
 				aux2.setFecha(aux.get(i).getFecha());
 				aux2.setIdPedido(aux.get(i).getIdPedido());
 				aux2.setNombrePaquete(aux.get(i).getPaquetes().getNombrePaquete());

@@ -36,4 +36,6 @@ public interface IComprasService {
 	public List<ICarritoProyeccion> carritoPaquetesByCompraId(Long compraId);
 	
 	public Compras findCompraUsuario(Usuarios usuario); 
+	
+	public List<Compras> findHistorialComprasByUsuario(Usuarios usuario);
 }

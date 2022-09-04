@@ -13,7 +13,9 @@ import com.drbanner.app.entity.Usuarios;
 public interface IComprasRepository extends CrudRepository<Compras,Long>{
 
 	@Query(value = "SELECT * FROM pedidos INNER JOIN compras ON pedidos.compras_id_compra = pedidos.id_pedido WHERE compras.id_compra=?1 AND compras.carrito=0", nativeQuery = true)
-	List<ICarritoProyeccion> findPaquetesByCompraId(Long usuarioId);
+	List<ICarritoProyeccion> findPaquetesByCompraId(Long compraId);
 	
-	Optional<Compras> findByUsuariosAndCarrito(Usuarios usuario, int carrito); 
+	Optional<Compras> findByUsuariosAndCarrito(Usuarios usuario, int carrito);
+	
+	List<Compras> findComprasByUsuariosAndCarritoOrderByFechaCompraAscHoraCompraAsc(Usuarios usuario, int carrito);
 }

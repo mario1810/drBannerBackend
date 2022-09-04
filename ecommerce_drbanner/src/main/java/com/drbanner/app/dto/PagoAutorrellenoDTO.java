@@ -2,10 +2,6 @@ package com.drbanner.app.dto;
 
 import java.io.Serializable;
 
-import org.springframework.stereotype.Component;
-
-import com.drbanner.app.entity.Usuarios;
-
 import lombok.Data;
 
 @Data
@@ -16,5 +12,7 @@ public class PagoAutorrellenoDTO implements Serializable{
 	private String apellido;
 	private String numeroTarjeta;
 	private String tipoTarjeta;
+	private boolean datosDisponibles;
+	private String totalPagar;
 		
 }

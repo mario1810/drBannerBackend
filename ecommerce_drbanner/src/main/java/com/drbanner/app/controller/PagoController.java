@@ -1,14 +1,13 @@
 package com.drbanner.app.controller;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +17,10 @@ import com.drbanner.app.dto.PagoAutorrellenoDTO;
 import com.drbanner.app.dto.PagoCompraDTO;
 import com.drbanner.app.dto.ResultadoRequestDTO;
 import com.drbanner.app.entity.Compras;
+import com.drbanner.app.entity.Pedidos;
 import com.drbanner.app.entity.Usuarios;
 import com.drbanner.app.service.IComprasService;
+import com.drbanner.app.service.IPedidosService;
 import com.drbanner.app.service.IUsuariosService;
 
 @CrossOrigin(origins = "*")
@@ -31,17 +32,37 @@ public class PagoController {
 	IUsuariosService usuariosService;
 	@Autowired
 	IComprasService comprasService;
+	@Autowired
+	IPedidosService pedidosService;
 	
-	/*Se ejecuta este request cuando se abre la página de pago*/
-	/*/api/pago/{idUser}*/
-	@GetMapping("/pago/{id}")
-	public PagoAutorrellenoDTO datosUsuarioById(@PathVariable Long id) {
-		Usuarios usuario=usuariosService.findUsuarioById(id);
+	@GetMapping("/pago/{userId}")
+	public PagoAutorrellenoDTO datosUsuario(@PathVariable Long userId) {
 		PagoAutorrellenoDTO formularioPago = new PagoAutorrellenoDTO();
+		Usuarios usuario=usuariosService.findUsuarioById(userId);
+		//Asignamos datos generales del usuario
+		formularioPago.setDatosDisponibles(false);
 		formularioPago.setNombre(usuario.getNombre());
 		formularioPago.setApellido(usuario.getApellido());
-		formularioPago.setNumeroTarjeta(usuario.getNumeroTarjeta());
-		formularioPago.setTipoTarjeta(usuario.getTipoTarjeta());
+		String nTarjeta=usuario.getNumeroTarjeta();
+		String nTipo=usuario.getTipoTarjeta();
+		//Tenemos datos de la tarjeta?
+		if(nTarjeta!=null && nTipo!=null) {
+			formularioPago.setNumeroTarjeta(nTarjeta);
+			formularioPago.setTipoTarjeta(nTipo);
+			//Indicamos que si tenemos datos de tarjeta
+			formularioPago.setDatosDisponibles(true);
+		}
+		//Calculamos el costoa pagar
+		Compras compra =comprasService.findCompraUsuario(usuario);
+		List<Pedidos> misPedidos=pedidosService.findPedidosByCompra(compra);
+		double costoTotal=0;
+		for(Pedidos pedido: misPedidos) {
+			costoTotal+=Double.parseDouble(pedido.getPaquetes().getCosto());
+		}
+		formularioPago.setTotalPagar(String.valueOf(costoTotal));
+		compra.setCostoTotal(String.valueOf(costoTotal));
+		//Actualizamos la compra
+		comprasService.saveCompra(compra);
 		return formularioPago;
 	}
 	
@@ -49,10 +70,16 @@ public class PagoController {
 	/*Se ejecuta este request cuando se da click en pagar*/
 	/*/api/pago*/
 	@PutMapping("/pago")
-	public ResultadoRequestDTO  finCompra(@RequestBody PagoCompraDTO  pagoDatos) {
-		//¿Guaradamos datos el usuario?
+	public ResultadoRequestDTO compraActualizacion(@RequestBody PagoCompraDTO  pagoDatos) {
+		ResultadoRequestDTO resultado = new ResultadoRequestDTO();
+		//¿Guaradamos datos de la trajeta del usuario?
+		Usuarios usuario=usuariosService.findUsuarioById(pagoDatos.getIdUsuario());
 		if(pagoDatos.getGuardarTarjeta()) {
-			Usuarios usuario=usuariosService.findUsuarioById(pagoDatos.getIdUsuario());
+			if(usuario==null) {
+				resultado.setResultado(false);
+				resultado.setErrorDescripcion("No se encontró el usuario");
+				return resultado;
+			}
 			usuario.setNumeroTarjeta(pagoDatos.getNumeroTarjeta());
 			usuario.setTipoTarjeta(pagoDatos.getTipoTarjeta());
 			//Actualizamos el usuario			
@@ -60,6 +87,11 @@ public class PagoController {
 		}
 		//Actualizamos tabla de compra
 		Compras compra = comprasService.findCompraById(pagoDatos.getIdCompra());
+		if(compra==null) {
+			resultado.setResultado(false);
+			resultado.setErrorDescripcion("No se encontró la compra");
+			return resultado;
+		}
 		//fecha y hora
 		Date date = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -71,11 +103,14 @@ public class PagoController {
 		compra.setCarrito(1);
 		//Actualizamos la compra
 		comprasService.saveCompra(compra);
-		ResultadoRequestDTO resultado = new ResultadoRequestDTO();
+		
+		//Debemos crear una compra vacia para la siguiente vez
+		compra = new Compras();
+		compra.setIdCompra(null);
+		compra.setUsuarios(usuario);
+		comprasService.saveCompra(compra);
 		resultado.setResultado(true);
 		resultado.setErrorDescripcion("No hubo ningun error");
 		return resultado;
 	}
-	
-	
 }
