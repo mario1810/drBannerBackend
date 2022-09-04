@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.drbanner.app.entity.Comentarios;
+import com.drbanner.app.entity.Usuarios;
 import com.drbanner.app.repository.IComentarioProyeccion;
 import com.drbanner.app.repository.IComentariosRepository;
 @Service
@@ -41,6 +42,8 @@ public class ComentariosServiceImp implements IComentariosService{
 	public List<IComentarioProyeccion> findComentariosByIdUsario(Long IdUsuario) {
 		return comentariosRepository.findByUsuariosId(IdUsuario);
 	}
+
+	
 }
 
 	

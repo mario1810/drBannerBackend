@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import com.drbanner.app.entity.Comentarios;
+import com.drbanner.app.entity.Usuarios;
 import com.drbanner.app.repository.IComentarioProyeccion;
 
 public interface IComentariosService {
@@ -35,4 +36,7 @@ public interface IComentariosService {
 	
 	
 	public List<IComentarioProyeccion> findComentariosByIdUsario(Long IdUsuario);
+	
+	
+	
 }

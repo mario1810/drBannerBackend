@@ -10,7 +10,11 @@ import lombok.Data;
 public class ComentariosDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	private Long id;
 	private String nombre;
 	private String apellido;
-	private List<IComentarioProyeccion> comentarios;
+	private int  stars;
+	private String foto;
+	private String comentario;
+	
 }
