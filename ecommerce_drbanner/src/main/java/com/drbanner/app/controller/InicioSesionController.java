@@ -3,6 +3,7 @@ package com.drbanner.app.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,12 +37,12 @@ public class InicioSesionController {
 	IComprasService comprasService;
 	
 	
-	@GetMapping("/login")
-	public IsUsuarioLoginDTO  iniciarSesion(@RequestBody Usuarios  datosUsuario) {
+	@GetMapping("/login/{correo}/{password}")
+	public IsUsuarioLoginDTO  iniciarSesion(@PathVariable String correo,@PathVariable String password) {
 		
 		IsUsuarioLoginDTO auxUser= new IsUsuarioLoginDTO();
 		//Verificamos si el usuario est'a en la BD
-		Usuarios usuario = usuariosService.findUsuarioLogin(datosUsuario.getCorreo(), datosUsuario.getPassword());
+		Usuarios usuario = usuariosService.findUsuarioLogin(correo, password);
 		if(usuario!=null) {
 			// Si está en la base de datos
 			auxUser.setUserId(usuario.getIdUsuario());

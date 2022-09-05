@@ -44,6 +44,7 @@ public class RegistrateController {
 			// Creamos una compra vacia al usuario
 			Compras compra = new Compras();
 			compra.setUsuarios(usuario);
+			compra.setIdCompra(null);
 			compra=comprasService.saveCompra(compra);
 			auxUser.setCompraId(compra.getIdCompra());
 			

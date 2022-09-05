@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.drbanner.app.dto.CarritoCantidadDTO;
 import com.drbanner.app.dto.PedidosDTO;
 import com.drbanner.app.dto.ResultadoRequestDTO;
 import com.drbanner.app.entity.Compras;
@@ -35,12 +35,14 @@ public class CarritoController {
 	/*Se muestra los elementos en el carito*/
 	@GetMapping("/carrito/{compraId}")
 	public List<PedidosDTO> getCarritoElementos(@PathVariable Long compraId) {
+		List<PedidosDTO> carritoFinal= new ArrayList<PedidosDTO>();
 		//Obtenemos la compra asosciada al carrito
 		Compras miCompra= comprasService.findCompraById(compraId);
+		if(miCompra.getCarrito()==1)
+			return carritoFinal;
 		//Obtenemos todos los pedidos en dicha compra
 		List<Pedidos> aux=pedidosService.findPedidosByCompra(miCompra);
 		//Filtramos la informacióna regresar
-		List<PedidosDTO> carritoFinal= new ArrayList<PedidosDTO>();
 		for(int i=0; i<aux.size();i++) {	
 			{	
 				PedidosDTO aux2= new PedidosDTO();
@@ -66,7 +68,14 @@ public class CarritoController {
 		//Existe ese pedido
 		if(pedidosService.findPedidoById(idPedido)!=null) {
 			//Eliminamos pedido
-			pedidosService.deletePedidoById(idPedido);
+			Pedidos miPedido=pedidosService.deletePedidoById(idPedido);
+			Compras miCompra=miPedido.getCompras();
+			if(miCompra.getCarrito()==1)
+			{
+				resultado.setResultado(false);
+				resultado.setErrorDescripcion("No se puede eliminar el paquete");
+				return resultado;
+			}
 			resultado.setResultado(true);
 			resultado.setErrorDescripcion("No hubo ningun error");
 			return resultado;	
@@ -74,6 +83,26 @@ public class CarritoController {
 		resultado.setResultado(false);
 		resultado.setErrorDescripcion("No existe el paquete");
 		return resultado;
+	}
+	
+	/*Se muestra los elementos en el carito*/
+	@GetMapping("/carrito/cantidad/{compraId}")
+	public CarritoCantidadDTO getCarritoCantidadElementos(@PathVariable Long compraId) {
+		long cantidad=0;
+		CarritoCantidadDTO resp= new CarritoCantidadDTO();
+		resp.setCantidad(String.valueOf(cantidad)); 
+		//Obtenemos la compra asosciada al carrito
+		Compras miCompra= comprasService.findCompraById(compraId);
+		if(miCompra==null || miCompra.getCarrito()==1)
+			return resp;
+		//Obtenemos todos los pedidos en dicha compra
+		List<Pedidos> aux=pedidosService.findPedidosByCompra(miCompra);
+		if(aux==null)
+			cantidad=0;
+		else
+			cantidad=aux.size();
+		resp.setCantidad(String.valueOf(cantidad));
+		return resp;
 	}
 	
 	
