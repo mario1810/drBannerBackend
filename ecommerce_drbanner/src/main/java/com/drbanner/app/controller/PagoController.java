@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.drbanner.app.dto.PagoAutorrellenoDTO;
 import com.drbanner.app.dto.PagoCompraDTO;
-import com.drbanner.app.dto.ResultadoRequestDTO;
+import com.drbanner.app.dto.ResultadoRequestCompraDTO;
 import com.drbanner.app.entity.Compras;
 import com.drbanner.app.entity.Pedidos;
 import com.drbanner.app.entity.Usuarios;
@@ -70,8 +70,8 @@ public class PagoController {
 	/*Se ejecuta este request cuando se da click en pagar*/
 	/*/api/pago*/
 	@PutMapping("/pago")
-	public ResultadoRequestDTO compraActualizacion(@RequestBody PagoCompraDTO  pagoDatos) {
-		ResultadoRequestDTO resultado = new ResultadoRequestDTO();
+	public ResultadoRequestCompraDTO compraActualizacion(@RequestBody PagoCompraDTO  pagoDatos) {
+		ResultadoRequestCompraDTO resultado = new ResultadoRequestCompraDTO();
 		//¿Guaradamos datos de la trajeta del usuario?
 		Usuarios usuario=usuariosService.findUsuarioById(pagoDatos.getIdUsuario());
 		if(pagoDatos.getGuardarTarjeta()) {
@@ -108,7 +108,9 @@ public class PagoController {
 		compra = new Compras();
 		compra.setIdCompra(null);
 		compra.setUsuarios(usuario);
-		comprasService.saveCompra(compra);
+		compra=comprasService.saveCompra(compra);
+		//Actulizamos el Id  de la compra (se asigna una nueva compra vacia)
+		resultado.setIdCompra(compra.getIdCompra());
 		resultado.setResultado(true);
 		resultado.setErrorDescripcion("No hubo ningun error");
 		return resultado;

@@ -9,7 +9,6 @@ public class PagoCompraDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long idUsuario;
-	private String nombre;
 	private String numeroTarjeta;
 	private String tipoTarjeta;
 	private String mes;

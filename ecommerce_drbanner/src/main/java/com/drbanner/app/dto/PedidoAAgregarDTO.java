@@ -14,5 +14,6 @@ public class PedidoAAgregarDTO implements Serializable{
 	private Long userId;
 	private String nombrePaquete;
 	private String nombreCategoria;
+	private String telefono; 
 	
 }
